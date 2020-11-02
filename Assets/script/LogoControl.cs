@@ -31,6 +31,6 @@ public class LogoControl : MonoBehaviour
     IEnumerator TextPractice()
     {
         Debug.Log("연습");
-        yield return StartCoroutine(NormalLogo("낭만여행가"));
+        yield return StartCoroutine(NormalLogo("달을 사랑한 호수"));
     }
 }
