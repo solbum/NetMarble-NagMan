@@ -20,12 +20,12 @@ public class ChangeScreen : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("CPage"))
         {
-            Vector2 thisPos = this.gameObject.transform.position;
+            Vector2 playerPos = player.gameObject.transform.position;
             Vector2 thatPos = coll.gameObject.transform.position;
 
             laterPage = currentPage;
 
-            if (thisPos.x <= thatPos.x)
+            if (playerPos.x <= thatPos.x)
             {
                 currentPage++;
             }
@@ -40,12 +40,25 @@ public class ChangeScreen : MonoBehaviour
 
     void NowPage()
     {
-
+        Vector2 middlePos;
+        bool nowStat;
+        if(laterPage <= currentPage)
+        {
+            nowStat = true;
+        }
+        else
+        {
+            nowStat = false;
+        }
         switch(currentPage)
         {
             case 1 :
-                if
-                this.transform.position = new Vector2(5, 13);
+                middlePos.x = 5;
+                this.transform.position = new Vector2(middlePos.x, 13);
+                if (nowStat)
+                {
+                    player.transform.();
+                }    
                 break;
             case 2 :
                 this.transform.position = new Vector2(102, 13);
