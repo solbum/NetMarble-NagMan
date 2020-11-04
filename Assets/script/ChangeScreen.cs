@@ -9,7 +9,7 @@ public class ChangeScreen : MonoBehaviour
     int laterPage;
 
 
-    public GameObject player;
+    public GameObject camera;
 
     public void Awake()
     {
@@ -20,7 +20,7 @@ public class ChangeScreen : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("CPage"))
         {
-            Vector2 playerPos = player.gameObject.transform.position;
+            Vector2 playerPos = this.gameObject.transform.position;
             Vector2 thatPos = coll.gameObject.transform.position;
 
             laterPage = currentPage;
@@ -41,7 +41,10 @@ public class ChangeScreen : MonoBehaviour
     void NowPage()
     {
         Vector2 middlePos;
+        Vector2 endPos;
+
         bool nowStat;
+
         if(laterPage <= currentPage)
         {
             nowStat = true;
@@ -54,16 +57,48 @@ public class ChangeScreen : MonoBehaviour
         {
             case 1 :
                 middlePos.x = 5;
-                this.transform.position = new Vector2(middlePos.x, 13);
-                if (nowStat)
+                camera.transform.position = new Vector3(middlePos.x, 13, -10);
+
+                if (!nowStat)
                 {
-                    player.transform.();
+                    endPos = new Vector2(middlePos.x + 45.0f, this.transform.position.y);
+                    StartCoroutine((IEnumerator)MoveTo(GameObject.FindWithTag("Player"), endPos));
                 }    
                 break;
+
             case 2 :
-                this.transform.position = new Vector2(102, 13);
+                middlePos.x = 102;
+                camera.transform.position = new Vector3(middlePos.x, 13, -10);
+
+                if (nowStat)
+                {
+                    endPos = new Vector2(middlePos.x - 45.0f, this.transform.position.y);
+                    StartCoroutine((IEnumerator)MoveTo(GameObject.FindWithTag("Player"), endPos));
+                }
+                else
+                {
+                    endPos = new Vector2(middlePos.x + 45.0f, this.transform.position.y);
+                    StartCoroutine((IEnumerator)MoveTo(GameObject.FindWithTag("Player"), endPos));
+                }
                 break;
         }
 
+    }
+
+    IEnumerable MoveTo(GameObject a, Vector2 toPos)
+    {
+        float count = 0;
+        Vector2 wasPos = a.transform.position;
+        while(true)
+        {
+            count += Time.deltaTime;
+            a.transform.position = Vector2.Lerp(wasPos, toPos, count);
+            if(count >= 1)
+            {
+                a.transform.position = toPos;
+                break;
+            }
+            yield return null;
+        }
     }
 }
