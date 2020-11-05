@@ -79,6 +79,7 @@ public class ReflectRays : MonoBehaviour
         
         if(hitData.collider.gameObject.tag == "Prism")
         {
+            Debug.Log("프리즘에 걸림");
             hitData.collider.GetComponent<PrismReflect>().SplitLaser(hitData.point, origin - hitData.point, currentDistance);
             Points.Add(hitData.point);
         }

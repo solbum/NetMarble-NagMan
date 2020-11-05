@@ -41,10 +41,10 @@ public class PrismReflect : MonoBehaviour
 
         for (int i = 0; i < laser.Length; i++)
         {
-            //Quaternion rot = Quaternion.AngleAxis(angle * i + 20, Vector3.forward);
-            //Vector2 dir = rot * direction;
+            Quaternion rot = Quaternion.AngleAxis(angle * i + 20, Vector3.forward);
+            Vector2 dir = rot * direction;
 
-            //laser[i].ShotRay(hitPosition, dir.normalized, currentDistance);
+            laser[i].ShotRay(hitPosition, dir.normalized, currentDistance);
         }
     }
 
