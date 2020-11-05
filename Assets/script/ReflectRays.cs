@@ -8,11 +8,14 @@ public class ReflectRays : MonoBehaviour
     float currentDistance;
     int currentReflections = 0;
     int maxReflections;
+
     List<Vector3> Points;
+
     LineRenderer lr;
+    Ray ray;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         Points = new List<Vector3>();
         lr = transform.GetComponent<LineRenderer>();
@@ -25,6 +28,8 @@ public class ReflectRays : MonoBehaviour
             ShotRay(new Vector2(-18, 40), Vector2.down, 100);
         }
     }
+
+    // Physics2D.Raycast(시작위치, 방향, 충돌 반환, 길이값)
 
     public void ShotRay(Vector2 startPosition, Vector2 direction, float maxDistance, int maxReflections = int.MaxValue)
     {
@@ -84,5 +89,11 @@ public class ReflectRays : MonoBehaviour
             Points.Add(hitData.point);
         }
 
+        if (hitData.collider.gameObject.tag == "BFairy")
+        {
+            Debug.Log("검은색 요정");
+            hitData.collider.GetComponent<BlackFairy>().isShut = true;
+            hitData.collider.GetComponent<BlackFairy>().ChangeDir();
+        }
     }
 }

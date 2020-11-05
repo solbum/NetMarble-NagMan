@@ -10,6 +10,7 @@ TagManager:
   - RedStone
   - StartLine
   - CPage
+  - BFairy
   layers:
   - Default
   - TransparentFX
