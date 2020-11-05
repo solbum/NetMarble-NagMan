@@ -7,9 +7,14 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rigid;
     SpriteRenderer render;
+
     Vector3 movement;
+
     public Animator anim;
     public GameObject camera;
+    public GameObject walkSound;
+
+    private AudioSource source;
 
     public float movePower = 1f; // 움직이는 힘
     public float jumpPower = 1f; // 점프하는 힘
@@ -25,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Awake()
     {
-        NowPage();
+        NowPage(); 
     }
 
     void Start()
@@ -34,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
 
         rigid = gameObject.GetComponent<Rigidbody2D> ();
         render = gameObject.GetComponent<SpriteRenderer> ();
+        source = walkSound.GetComponent<AudioSource>();
+        source.loop = false;
     }
 
     void Update()
@@ -45,10 +52,12 @@ public class PlayerMovement : MonoBehaviour
                 timer += Time.deltaTime;
                 if (Input.GetButtonDown("Jump"))
                 {
-                    if(timer > waitingJump)
+                    isJumping = true;
+                    anim.SetTrigger("doJumping");
+                    if (timer > waitingJump)
                     {
                         timer = 0.0f;
-                        isJumping = true;
+                        
                         jumpCount--;
                     }
                 }
@@ -64,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
+        
         if (!isMoveCam)
         { 
             Vector3 moveVelocity = Vector3.zero;
@@ -201,5 +211,10 @@ public class PlayerMovement : MonoBehaviour
         }
         isMoveCam = false;
         Debug.Log("움직일 수 있음");
+    }
+
+    public void isPlay()
+    {
+        source.Play();
     }
 }

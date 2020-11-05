@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlackFairy : MonoBehaviour
 {
-    public int dir;
+    public int dir = 1;
     
     public bool isShut;
 
@@ -39,22 +39,24 @@ public class BlackFairy : MonoBehaviour
                 break;
         }
 
-        StartCoroutine(ShotChildRay());
+        laser[0].ShotRay(isPos, nowDir.normalized, 1000);
+        //StartCoroutine(ShotChildRay());
     }
 
     IEnumerator ShotChildRay()
     {
-        laser[0].ShotRay(isPos, nowDir.normalized, 1000);
-        if(isShut)
-           yield return StartCoroutine(ShotChildRay());
+        if (isShut)
+        {
+            laser[0].ShotRay(isPos, nowDir.normalized, 1000);
+        }
         else
             yield return null;
-        
+           
     }
 
     void OnMouseDown()
     {
-        if(dir < 3 && dir >0)
+        if(dir < 4 && dir >0)
         {
             dir++;
         }

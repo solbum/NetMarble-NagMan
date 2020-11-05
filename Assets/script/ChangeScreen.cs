@@ -62,7 +62,7 @@ public class ChangeScreen : MonoBehaviour
                 if (!nowStat)
                 {
                     endPos = new Vector2(middlePos.x + 45.0f, this.transform.position.y);
-                    StartCoroutine((IEnumerator)MoveTo(GameObject.FindWithTag("Player"), endPos));
+                    StartCoroutine(MoveTo(GameObject.FindWithTag("Player"), endPos));
                 }    
                 break;
 
@@ -73,21 +73,21 @@ public class ChangeScreen : MonoBehaviour
                 if (nowStat)
                 {
                     endPos = new Vector2(middlePos.x - 45.0f, this.transform.position.y);
-                    StartCoroutine((IEnumerator)MoveTo(GameObject.FindWithTag("Player"), endPos));
+                    StartCoroutine(MoveTo(GameObject.FindWithTag("Player"), endPos));
                 }
                 else
                 {
                     endPos = new Vector2(middlePos.x + 45.0f, this.transform.position.y);
-                    StartCoroutine((IEnumerator)MoveTo(GameObject.FindWithTag("Player"), endPos));
+                    StartCoroutine(MoveTo(GameObject.FindWithTag("Player"), endPos));
                 }
                 break;
         }
 
     }
 
-    IEnumerable MoveTo(GameObject a, Vector2 toPos)
+    IEnumerator MoveTo(GameObject a, Vector2 toPos)
     {
-        float count = 0;
+        float count = -1;
         Vector2 wasPos = a.transform.position;
         while(true)
         {
