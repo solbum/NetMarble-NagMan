@@ -5,12 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - FirstButton
+  - SecondButton
+  - ThirdButton
+  - Useable
+  - TESTBUT
+  - Managers
   - Reflect
-  - Prism
-  - RedStone
-  - StartLine
-  - CPage
-  - BFairy
+  - MultReflect
   layers:
   - Default
   - TransparentFX
