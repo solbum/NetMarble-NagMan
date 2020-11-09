@@ -20,7 +20,7 @@ public class BlackFairy : MonoBehaviour
         laser = transform.GetComponentsInChildren<ReflectRays>();
     }
 
-    public void ChangeDir()
+    public void FixedUpdate()
     {
         isPos = new Vector2(transform.position.x, transform.position.y);
         switch (dir)

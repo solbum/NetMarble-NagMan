@@ -33,7 +33,9 @@ public class ReflectRays : MonoBehaviour
 
     public void ShotRay(Vector2 startPosition, Vector2 direction, float maxDistance, int maxReflections = int.MaxValue)
     {
-        var hitData = Physics2D.Raycast(startPosition, direction, maxDistance);
+        //var hitData = Physics2D.Raycast(startPosition, direction, maxDistance);
+        var hitData = Physics2D.RaycastAll(startPosition, direction, maxDistance);
+
 
         this.maxReflections = maxReflections;
         currentDistance = maxDistance;
@@ -42,6 +44,7 @@ public class ReflectRays : MonoBehaviour
         Points.Clear();
         Points.Add(startPosition);
 
+        // 나는 병신이다를 세번 복창한다.
         if (hitData)
         {
             currentDistance -= Vector2.Distance(startPosition, hitData.point);
@@ -93,7 +96,7 @@ public class ReflectRays : MonoBehaviour
         {
             Debug.Log("검은색 요정");
             hitData.collider.GetComponent<BlackFairy>().isShut = true;
-            hitData.collider.GetComponent<BlackFairy>().ChangeDir();
+            //hitData.collider.GetComponent<BlackFairy>().ChangeDir();
         }
     }
 }
