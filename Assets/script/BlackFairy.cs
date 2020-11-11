@@ -8,8 +8,8 @@ public class BlackFairy : MonoBehaviour
     
     public bool isShut;
 
-    Vector2 nowDir;
-    Vector2 isPos;
+    public Vector2 nowDir;
+    public Vector2 isPos;
 
     ReflectRays[] laser;
 
@@ -38,21 +38,8 @@ public class BlackFairy : MonoBehaviour
                 nowDir = transform.up;
                 break;
         }
-
-        laser[0].ShotRay(isPos, nowDir.normalized, 1000);
-        //StartCoroutine(ShotChildRay());
     }
 
-    IEnumerator ShotChildRay()
-    {
-        if (isShut)
-        {
-            laser[0].ShotRay(isPos, nowDir.normalized, 1000);
-        }
-        else
-            yield return null;
-           
-    }
 
     void OnMouseDown()
     {

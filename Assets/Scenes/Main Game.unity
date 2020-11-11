@@ -245,6 +245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dir: 1
   isShut: 0
+  nowDir: {x: 0, y: 0}
+  isPos: {x: 0, y: 0}
 --- !u!1 &187549145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,7 +1788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   confirmObject: 0
-  maxAngle: 60.1
+  maxAngle: 0
 --- !u!4 &774994639
 Transform:
   m_ObjectHideFlags: 0
@@ -6850,8 +6852,8 @@ MonoBehaviour:
   anim: {fileID: 1296983414}
   camera: {fileID: 519420028}
   walkSound: {fileID: 594661060}
-  movePower: 20
-  jumpPower: 20
+  movePower: 1
+  jumpPower: 1
   isGrounded: 0
   jumpCount: 2
 --- !u!1 &1348333831
@@ -7082,7 +7084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   confirmObject: 0
-  maxAngle: 30.2
+  maxAngle: 0
 --- !u!1 &1643654292
 GameObject:
   m_ObjectHideFlags: 0
@@ -11854,7 +11856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1695700578
 MonoBehaviour:
   m_ObjectHideFlags: 0

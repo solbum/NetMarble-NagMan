@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(LineRenderer))]
 public class ReflectRays : MonoBehaviour
@@ -7,7 +8,7 @@ public class ReflectRays : MonoBehaviour
 
     float currentDistance;
     int currentReflections = 0;
-    int maxReflections;
+    int maxReflections = int.MaxValue;
 
     List<Vector3> Points;
 
@@ -27,37 +28,48 @@ public class ReflectRays : MonoBehaviour
         {
             ShotRay(new Vector2(-18, 40), Vector2.down, 100);
         }
+
+            Vector2 startPosition = transform.parent.gameObject.GetComponent<BlackFairy>().isPos;
+            Vector2 direction = transform.parent.gameObject.GetComponent<BlackFairy>().nowDir;
+            float maxDistance = 1000;
+
+            var hitData = Physics2D.RaycastAll(startPosition, direction, maxDistance);
+
+            for (int i = 0; i < hitData.Length; i++)
+            {
+                if (hitData[i] != this.transform.parent)
+                {
+                    this.maxReflections = maxReflections;
+                    currentDistance = maxDistance;
+
+                    currentReflections = 0;
+                    Points.Clear();
+                    Points.Add(startPosition);
+
+
+                    if (hitData[i])
+                    {
+                        currentDistance -= Vector2.Distance(startPosition, hitData[i].point);
+                        ReflectFurther(startPosition, hitData[i]);
+                    }
+                    else
+                    {
+                        Points.Add(startPosition + direction.normalized * currentDistance);
+
+                    }
+
+                    lr.positionCount = Points.Count;
+                    lr.SetPositions(Points.ToArray());
+                }
+            }
+        s
     }
 
     // Physics2D.Raycast(시작위치, 방향, 충돌 반환, 길이값)
 
     public void ShotRay(Vector2 startPosition, Vector2 direction, float maxDistance, int maxReflections = int.MaxValue)
     {
-        //var hitData = Physics2D.Raycast(startPosition, direction, maxDistance);
-        var hitData = Physics2D.RaycastAll(startPosition, direction, maxDistance);
 
-
-        this.maxReflections = maxReflections;
-        currentDistance = maxDistance;
-        
-        currentReflections = 0;
-        Points.Clear();
-        Points.Add(startPosition);
-
-        // 나는 병신이다를 세번 복창한다.
-        if (hitData)
-        {
-            currentDistance -= Vector2.Distance(startPosition, hitData.point);
-            ReflectFurther(startPosition, hitData);
-        }
-        else
-        {
-            Points.Add(startPosition + direction.normalized * currentDistance);
-
-        }
-
-        lr.positionCount = Points.Count;
-        lr.SetPositions(Points.ToArray());
     }
 
     private void ReflectFurther(Vector2 origin, RaycastHit2D hitData)
