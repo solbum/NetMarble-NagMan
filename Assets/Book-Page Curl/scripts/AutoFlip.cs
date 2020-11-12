@@ -18,7 +18,7 @@ public class AutoFlip : MonoBehaviour {
             StartFlipping();
         ControledBook.OnFlip.AddListener(new UnityEngine.Events.UnityAction(PageFlipped));
 	}
-    void PageFlipped()
+    protected void PageFlipped()
     {
         isFlipping = false;
     }

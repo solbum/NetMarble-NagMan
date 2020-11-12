@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator anim;
     public GameObject camera;
     public GameObject walkSound;
+    public SceneTrans sceneTrans;
 
     private AudioSource source;
 
@@ -30,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Awake()
     {
-        NowPage(); 
+        NowPage();
     }
 
     void Start()
@@ -134,10 +135,12 @@ public class PlayerMovement : MonoBehaviour
             if (playerPos.x <= thatPos.x)
             {
                 currentPage++;
+                sceneTrans.NextScene();
             }
             else // thisPos.x > thatPos.x
             {
                 currentPage--;
+                sceneTrans.PrevScene();
             }
         }
 
