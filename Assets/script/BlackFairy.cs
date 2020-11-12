@@ -13,8 +13,6 @@ public class BlackFairy : MonoBehaviour
 
     ReflectRays[] laser;
 
-    private IEnumerator coroutine;
-
     private void Awake()
     {
         laser = transform.GetComponentsInChildren<ReflectRays>();
@@ -53,4 +51,8 @@ public class BlackFairy : MonoBehaviour
         }
     }
 
+    public void ChangeChildStat()
+    {
+        laser[1].nowStart = true;
+    }
 }
