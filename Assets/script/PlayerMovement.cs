@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator anim;
     public GameObject camera;
     public GameObject walkSound;
+    public GameObject bookCanvas;
     public SceneTrans sceneTrans;
 
     private AudioSource source;
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Awake()
     {
+        bookCanvas.SetActive(false);
         NowPage();
     }
 
@@ -127,6 +129,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("CPage"))
         {
+            bookCanvas.SetActive(true);
+
             Vector2 playerPos = this.gameObject.transform.position;
             Vector2 thatPos = coll.gameObject.transform.position;
 
@@ -134,13 +138,13 @@ public class PlayerMovement : MonoBehaviour
 
             if (playerPos.x <= thatPos.x)
             {
-                currentPage++;
                 sceneTrans.NextScene();
+                currentPage++;           
             }
             else // thisPos.x > thatPos.x
             {
+                sceneTrans.NextScene();
                 currentPage--;
-                sceneTrans.PrevScene();
             }
         }
 
@@ -200,6 +204,7 @@ public class PlayerMovement : MonoBehaviour
         isMoveCam = true;
         float count = 0.05f;
         Vector2 wasPos = this.transform.position;
+        
         while (wasPos != toPos)
         {
             Debug.Log("움직이기 시작");

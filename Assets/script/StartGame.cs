@@ -16,7 +16,7 @@ public class StartGame : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(VanishImage());
-        isUseUi.SetActiveRecursively(false);
+        isUseUi.SetActive(false);
     }
 
 
@@ -26,7 +26,7 @@ public class StartGame : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         image.CrossFadeAlpha(0f, 2f, false);
         yield return new WaitForSeconds(4.0f);
-        isUseUi.SetActiveRecursively(true);
+        isUseUi.SetActive(true);
         LogoControl logo = Logo.GetComponent<LogoControl>();
         logo.LogoStart();
        

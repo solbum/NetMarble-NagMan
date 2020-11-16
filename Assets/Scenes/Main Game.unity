@@ -1505,7 +1505,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6996,6 +6996,7 @@ MonoBehaviour:
   anim: {fileID: 1296983414}
   camera: {fileID: 519420028}
   walkSound: {fileID: 594661060}
+  bookCanvas: {fileID: 1450587713}
   sceneTrans: {fileID: 1947624815}
   movePower: 30
   jumpPower: 1
@@ -7018,7 +7019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1348333832
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7297,7 +7298,7 @@ Canvas:
   m_GameObject: {fileID: 1450587713}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -7307,7 +7308,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_TargetDisplay: 0
 --- !u!224 &1450587717
 RectTransform:
@@ -17864,7 +17865,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b38f1555bc2bc5246a7c1a87e231e51c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f1ddd79b2fa5444b9f0150b809a8dd0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17893,7 +17894,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b1bac3987b1ad064a80f72496ee46425, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fca57dd61c151c649adcbc7ba39e71bb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17958,7 +17959,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a8371807677c9624f95debc13138fe33, type: 3}
   interactable: 0
   enableShadowEffect: 1
-  currentPage: 0
+  currentPage: 2
   ClippingPlane: {fileID: 1958475392}
   NextPageClip: {fileID: 1958388864}
   Shadow: {fileID: 1958382616}
@@ -18248,7 +18249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.00000008009374, y: -0.00000007264316}
 --- !u!224 &1967284130
@@ -18287,7 +18288,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 238.49512, y: -106.38922}
-  m_SizeDelta: {x: 498.51184, y: 773.1071}
+  m_SizeDelta: {x: 537.506, y: 916.5036}
   m_Pivot: {x: 0.000000020489097, y: 0.12}
 --- !u!224 &1967293980
 RectTransform:
@@ -18306,7 +18307,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 238.49512, y: -105.37775}
-  m_SizeDelta: {x: 997.0237, y: 1471.0237}
+  m_SizeDelta: {x: 1075.012, y: 1669.012}
   m_Pivot: {x: 1, y: 0.12}
 --- !u!224 &1967295070
 RectTransform:
@@ -18325,7 +18326,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -70.597, y: -101.55}
-  m_SizeDelta: {x: 498.51184, y: 773.1071}
+  m_SizeDelta: {x: 537.506, y: 916.5036}
   m_Pivot: {x: 0, y: 0.1}
 --- !u!224 &1967303890
 RectTransform:
@@ -18351,8 +18352,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.011963, y: 0.000015259}
-  m_SizeDelta: {x: 998.0237, y: 474}
+  m_AnchoredPosition: {x: -0.0059204, y: 0}
+  m_SizeDelta: {x: 1076.012, y: 594}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1967319860
 RectTransform:
@@ -18409,8 +18410,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 70.597, y: -101.54001}
-  m_SizeDelta: {x: 498.51184, y: 773.1071}
+  m_AnchoredPosition: {x: 70.597015, y: -101.54001}
+  m_SizeDelta: {x: 537.506, y: 916.5036}
   m_Pivot: {x: 1, y: 0.1}
 --- !u!222 &1967525732
 CanvasRenderer:
