@@ -30,7 +30,7 @@ public class ReflectRays : MonoBehaviour
         {
             ShotRay(new Vector2(-18, 40), Vector2.down, 100);
         }
-        if (nowStart)
+        else
         {
             Vector2 startPosition = transform.parent.gameObject.GetComponent<BlackFairy>().isPos;
             Vector2 direction = transform.parent.gameObject.GetComponent<BlackFairy>().nowDir;
@@ -49,7 +49,7 @@ public class ReflectRays : MonoBehaviour
 
         for (int i = 0; i < hitData.Length; i++)
         {
-            if (hitData[i] != this.transform.parent)
+            if (hitData[i] != GameObject.FindWithTag("BFairy"))
             {
                 this.maxReflections = maxReflections;
                 currentDistance = maxDistance;

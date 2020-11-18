@@ -81,6 +81,22 @@ public class ChangeScreen : MonoBehaviour
                     StartCoroutine(MoveTo(GameObject.FindWithTag("Player"), endPos));
                 }
                 break;
+
+            case 3:
+                middlePos.x = 199;
+                camera.transform.position = new Vector3(middlePos.x, 13, -10);
+
+                if(nowStat)
+                {
+                    endPos = new Vector2(middlePos.x - 45.0f, this.transform.position.y);
+                    StartCoroutine(MoveTo(GameObject.FindWithTag("Player"), endPos));
+                }
+                else
+                {
+                    endPos = new Vector2(middlePos.x + 45.0f, this.transform.position.y);
+                    StartCoroutine(MoveTo(GameObject.FindWithTag("Player"), endPos));
+                }
+                break;
         }
 
     }

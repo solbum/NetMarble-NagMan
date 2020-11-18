@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 movement;
 
+    Vector2 playerPos;
+    Vector2 thatPos;
+
     public Animator anim;
     public GameObject camera;
     public GameObject walkSound;
@@ -127,27 +130,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
+        playerPos = this.gameObject.transform.position;
+        thatPos = coll.gameObject.transform.position;
+
         if (coll.gameObject.CompareTag("CPage"))
         {
             bookCanvas.SetActive(true);
-
-            Vector2 playerPos = this.gameObject.transform.position;
-            Vector2 thatPos = coll.gameObject.transform.position;
-
-            laterPage = currentPage;
-
-            if (playerPos.x <= thatPos.x)
-            {
-                sceneTrans.NextScene();
-                currentPage++;           
-            }
-            else // thisPos.x > thatPos.x
-            {
-                sceneTrans.NextScene();
-                currentPage--;
-            }
+            Invoke("StartPage", 0.6f);
         }
+    }
 
+    private void StartPage()
+    {
+        laterPage = currentPage;
+
+        if (playerPos.x <= thatPos.x)
+        {
+            sceneTrans.NextScene();
+            currentPage++;
+        }
+        else // thisPos.x > thatPos.x
+        {
+            sceneTrans.PrevScene();
+            currentPage--;
+        }
         NowPage();
     }
 
@@ -194,6 +200,22 @@ public class PlayerMovement : MonoBehaviour
                     StartCoroutine(MoveTo(endPos));
                 }
                 break;
+
+            case 3:
+                middlePos.x = 199;
+                camera.transform.position = new Vector3(middlePos.x, 13, -10);
+
+                if (nowStat)
+                {
+                    endPos = new Vector2(middlePos.x - 40.0f, this.transform.position.y);
+                    StartCoroutine(MoveTo(endPos));
+                }
+                else
+                {
+                    endPos = new Vector2(middlePos.x + 40.0f, this.transform.position.y);
+                    StartCoroutine(MoveTo(endPos));
+                }
+                break;
         }
 
     }
@@ -204,10 +226,8 @@ public class PlayerMovement : MonoBehaviour
         isMoveCam = true;
         float count = 0.05f;
         Vector2 wasPos = this.transform.position;
-        
         while (wasPos != toPos)
-        {
-            Debug.Log("움직이기 시작");
+        { 
             count += Time.deltaTime;
             this.transform.position = Vector2.Lerp(wasPos, toPos, count);
             if (count >= 1)
@@ -217,10 +237,12 @@ public class PlayerMovement : MonoBehaviour
             }
             yield return null;
         }
+        Debug.Log("사라진다.");
+        bookCanvas.SetActive(false);
         isMoveCam = false;
-        Debug.Log("움직일 수 있음");
     }
 
+    
     public void isPlay()
     {
         source.Play();
