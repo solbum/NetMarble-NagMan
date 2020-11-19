@@ -36,11 +36,13 @@ public class BlackFairy : MonoBehaviour
                 nowDir = transform.up;
                 break;
         }
+
+        laser[0].ShotRay(isPos, nowDir, 1000);
     }
 
 
     void OnMouseDown()
-    {
+    { 
         if(dir < 4 && dir >0)
         {
             dir++;
@@ -49,10 +51,5 @@ public class BlackFairy : MonoBehaviour
         {
             dir = 1;
         }
-    }
-
-    public void ChangeChildStat()
-    {
-        laser[1].nowStart = true;
     }
 }

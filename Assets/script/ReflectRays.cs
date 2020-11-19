@@ -30,7 +30,7 @@ public class ReflectRays : MonoBehaviour
         {
             ShotRay(new Vector2(-18, 40), Vector2.down, 100);
         }
-        else
+        /*else
         {
             Vector2 startPosition = transform.parent.gameObject.GetComponent<BlackFairy>().isPos;
             Vector2 direction = transform.parent.gameObject.GetComponent<BlackFairy>().nowDir;
@@ -38,10 +38,11 @@ public class ReflectRays : MonoBehaviour
 
             ShotRay(startPosition, direction, maxDistance);
 
-        }
+        }*/
     }
 
     // Physics2D.Raycast(시작위치, 방향, 충돌 반환, 길이값)
+    // sendmessage
 
     public void ShotRay(Vector2 startPosition, Vector2 direction, float maxDistance, int maxReflections = int.MaxValue)
     {
@@ -49,7 +50,7 @@ public class ReflectRays : MonoBehaviour
 
         for (int i = 0; i < hitData.Length; i++)
         {
-            if (hitData[i] != GameObject.FindWithTag("BFairy"))
+            if (hitData[i] != this.transform.parent)
             {
                 this.maxReflections = maxReflections;
                 currentDistance = maxDistance;
@@ -101,18 +102,10 @@ public class ReflectRays : MonoBehaviour
             }
         }
         
-        if(hitData.collider.gameObject.tag == "Prism")
-        {
-            Debug.Log("프리즘에 걸림");
-            hitData.collider.GetComponent<PrismReflect>().SplitLaser(hitData.point, origin - hitData.point, currentDistance);
-            Points.Add(hitData.point);
-        }
-
         if (hitData.collider.gameObject.tag == "BFairy")
         {
             Debug.Log("검은색 요정");
-            hitData.collider.GetComponent<BlackFairy>().ChangeChildStat();
-            
+
         }
     }
 }
