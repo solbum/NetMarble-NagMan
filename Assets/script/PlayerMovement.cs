@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     float timer;
     float waitingJump = 0.3f; // 점프 딜레이 시간
 
-    int currentPage = 1;
+    public int currentPage = 1;
     int laterPage;
     bool isMoveCam;
 
@@ -159,7 +159,6 @@ public class PlayerMovement : MonoBehaviour
 
     void NowPage()
     {
-        Vector2 middlePos;
         Vector2 endPos;
 
         bool nowStat;
@@ -175,45 +174,44 @@ public class PlayerMovement : MonoBehaviour
         switch (currentPage)
         {
             case 1:
-                middlePos.x = 5;
-                camera.transform.position = new Vector3(middlePos.x, 13, -10);
+                camera.transform.position = new Vector3(-28.0f, 18.5f, -10);
+                //camera.rect = new Rect(0.0f, 0.0f, 0.7f, 1.0f);
 
                 if (!nowStat)
                 {
-                    endPos = new Vector2(middlePos.x + 40.0f, this.transform.position.y);
+                    endPos = new Vector2(20.0f, 33.0f);
                     StartCoroutine(MoveTo(endPos));
                 }
                 break;
 
             case 2:
-                middlePos.x = 102;
-                camera.transform.position = new Vector3(middlePos.x, 13, -10);
+                camera.transform.position = new Vector3(80, -5, -10);
+                //camera.rect = new Rect(0.0f, 0.0f, 0.69f, 1.0f);
 
                 if (nowStat)
                 {
-                    endPos = new Vector2(middlePos.x - 40.0f, this.transform.position.y);
+                    endPos = new Vector2(12.0f, 33.0f);
                     StartCoroutine(MoveTo(endPos));
                 }
                 else
                 {
-                    endPos = new Vector2(middlePos.x + 40.0f, this.transform.position.y);
+                    endPos = new Vector2(148.0f, 23.0f);
                     StartCoroutine(MoveTo(endPos));
                 }
                 break;
 
             case 3:
-                middlePos.x = 199;
-                camera.transform.position = new Vector3(middlePos.x, 13, -10);
+                camera.transform.position = new Vector3(188.0f, 23, -10);
+                //camera.rect = new Rect(0.0f, 0.0f, 0.75f, 1.0f);
 
                 if (nowStat)
                 {
-                    endPos = new Vector2(middlePos.x - 40.0f, this.transform.position.y);
+                    endPos = new Vector2(156.0f, 23.0f);
                     StartCoroutine(MoveTo(endPos));
                 }
                 else
                 {
-                    endPos = new Vector2(middlePos.x + 40.0f, this.transform.position.y);
-                    StartCoroutine(MoveTo(endPos));
+
                 }
                 break;
         }
@@ -238,11 +236,14 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
         Debug.Log("사라진다.");
-        bookCanvas.SetActive(false);
+        Invoke("DisappearBook", 1.0f);
         isMoveCam = false;
     }
 
-    
+    private void DisappearBook()
+    {
+        bookCanvas.SetActive(false);
+    }    
     public void isPlay()
     {
         source.Play();

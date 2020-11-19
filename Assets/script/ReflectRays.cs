@@ -17,7 +17,6 @@ public class ReflectRays : MonoBehaviour
     LineRenderer lr;
     Ray ray;
 
-    // Use this for initialization
     void Awake()
     {
         Points = new List<Vector3>();
@@ -26,19 +25,11 @@ public class ReflectRays : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (this.gameObject.tag == "StartLine")
-        {
-            ShotRay(new Vector2(-18, 40), Vector2.down, 100);
-        }
-        else
-        {
-            Vector2 startPosition = transform.parent.gameObject.GetComponent<BlackFairy>().isPos;
-            Vector2 direction = transform.parent.gameObject.GetComponent<BlackFairy>().nowDir;
-            float maxDistance = 1000;
+        Vector2 startPosition = transform.parent.position;
+        Vector2 direction = gameObject.GetComponentInParent<BlackFairy>().nowDir;
+        float maxDistance = 1000;
 
-            ShotRay(startPosition, direction, maxDistance);
-
-        }
+        ShotRay(startPosition, direction, maxDistance);
     }
 
     // Physics2D.Raycast(시작위치, 방향, 충돌 반환, 길이값)
@@ -46,14 +37,17 @@ public class ReflectRays : MonoBehaviour
     public void ShotRay(Vector2 startPosition, Vector2 direction, float maxDistance, int maxReflections = int.MaxValue)
     {
         var hitData = Physics2D.RaycastAll(startPosition, direction, maxDistance);
+        Debug.Log("실행되기는 함?" + direction);
+
 
         for (int i = 0; i < hitData.Length; i++)
         {
             if (hitData[i] != GameObject.FindWithTag("BFairy"))
             {
+                Debug.Log("정령에 걸림");
+                Debug.Log(direction);
                 this.maxReflections = maxReflections;
                 currentDistance = maxDistance;
-
                 currentReflections = 0;
                 Points.Clear();
                 Points.Add(startPosition);
@@ -111,8 +105,6 @@ public class ReflectRays : MonoBehaviour
         if (hitData.collider.gameObject.tag == "BFairy")
         {
             Debug.Log("검은색 요정");
-            hitData.collider.GetComponent<BlackFairy>().ChangeChildStat();
-            
         }
     }
 }

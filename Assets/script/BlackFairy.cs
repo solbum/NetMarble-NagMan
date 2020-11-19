@@ -9,7 +9,6 @@ public class BlackFairy : MonoBehaviour
     public bool isShut;
 
     public Vector2 nowDir;
-    public Vector2 isPos;
 
     ReflectRays[] laser;
 
@@ -20,7 +19,6 @@ public class BlackFairy : MonoBehaviour
 
     public void FixedUpdate()
     {
-        isPos = new Vector2(transform.position.x, transform.position.y);
         switch (dir)
         {
             case 1:
@@ -49,10 +47,5 @@ public class BlackFairy : MonoBehaviour
         {
             dir = 1;
         }
-    }
-
-    public void ChangeChildStat()
-    {
-        laser[1].nowStart = true;
     }
 }
