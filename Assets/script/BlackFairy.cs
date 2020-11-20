@@ -5,8 +5,6 @@ using UnityEngine;
 public class BlackFairy : MonoBehaviour
 {
     public int dir = 1;
-    
-    public bool isShut;
 
     public Vector2 nowDir;
     public Vector2 isPos;
@@ -20,7 +18,7 @@ public class BlackFairy : MonoBehaviour
 
     public void FixedUpdate()
     {
-        isPos = new Vector2(transform.position.x, transform.position.y);
+        isPos = this.transform.position;
         switch (dir)
         {
             case 1:
@@ -37,12 +35,12 @@ public class BlackFairy : MonoBehaviour
                 break;
         }
 
-        laser[0].ShotRay(isPos, nowDir, 1000);
+        laser[0].ShotRay(isPos, nowDir, 100);
     }
 
 
     void OnMouseDown()
-    { 
+    {
         if(dir < 4 && dir >0)
         {
             dir++;

@@ -46,11 +46,11 @@ public class ReflectRays : MonoBehaviour
 
     public void ShotRay(Vector2 startPosition, Vector2 direction, float maxDistance, int maxReflections = int.MaxValue)
     {
-        var hitData = Physics2D.RaycastAll(startPosition, direction, maxDistance);
+        var hitData = Physics2D.Raycast(startPosition, direction, maxDistance);
+        Debug.DrawRay(startPosition, direction, Color.red);
 
-        for (int i = 0; i < hitData.Length; i++)
-        {
-            if (hitData[i] != this.transform.parent)
+
+        if (hitData != this.transform.parent)
             {
                 this.maxReflections = maxReflections;
                 currentDistance = maxDistance;
@@ -60,10 +60,10 @@ public class ReflectRays : MonoBehaviour
                 Points.Add(startPosition);
 
 
-                if (hitData[i])
+                if (hitData)
                 {
-                    currentDistance -= Vector2.Distance(startPosition, hitData[i].point);
-                    ReflectFurther(startPosition, hitData[i]);
+                    currentDistance -= Vector2.Distance(startPosition, hitData.point);
+                    ReflectFurther(startPosition, hitData);
                 }
                 else
                 {
@@ -74,7 +74,7 @@ public class ReflectRays : MonoBehaviour
                 lr.positionCount = Points.Count;
                 lr.SetPositions(Points.ToArray());
             }
-        }
+        
     }
 
     private void ReflectFurther(Vector2 origin, RaycastHit2D hitData)
