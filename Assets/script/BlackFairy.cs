@@ -23,15 +23,19 @@ public class BlackFairy : MonoBehaviour
         {
             case 1:
                 nowDir = transform.right;
+                isPos.x = this.transform.position.x + 2;
                 break;
             case 2:
                 nowDir = -transform.up;
+                isPos.y = this.transform.position.y - 2;
                 break;
             case 3:
                 nowDir = -transform.right;
+                isPos.x = this.transform.position.x - 2;
                 break;
             case 4:
                 nowDir = transform.up;
+                isPos.y = this.transform.position.y + 2;
                 break;
         }
 
@@ -39,7 +43,7 @@ public class BlackFairy : MonoBehaviour
     }
 
 
-    void OnMouseDown()
+    public void OnMouseDown()
     {
         if(dir < 4 && dir >0)
         {
@@ -49,5 +53,10 @@ public class BlackFairy : MonoBehaviour
         {
             dir = 1;
         }
+    }
+
+    public void ChangeChildActive()
+    {
+        laser[0].gameObject.SetActive(true);
     }
 }

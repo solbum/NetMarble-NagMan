@@ -22,6 +22,8 @@ public class ReflectRays : MonoBehaviour
     {
         Points = new List<Vector3>();
         lr = transform.GetComponent<LineRenderer>();
+        if(this.gameObject.tag != "StartLine")
+            this.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -47,39 +49,33 @@ public class ReflectRays : MonoBehaviour
     public void ShotRay(Vector2 startPosition, Vector2 direction, float maxDistance, int maxReflections = int.MaxValue)
     {
         var hitData = Physics2D.Raycast(startPosition, direction, maxDistance);
-        Debug.DrawRay(startPosition, direction, Color.red);
+        Debug.DrawRay(startPosition, direction * maxDistance, Color.red);
 
+        this.maxReflections = maxReflections;
+        currentDistance = maxDistance;
+        currentReflections = 0;
+        Points.Clear();
+        Points.Add(startPosition);
 
-        if (hitData != this.transform.parent)
-            {
-                this.maxReflections = maxReflections;
-                currentDistance = maxDistance;
+        if (hitData)
+        {
+            currentDistance -= Vector2.Distance(startPosition, hitData.point);
+            ReflectFurther(startPosition, hitData);
+        }
+        else
+        {
+            Points.Add(startPosition + direction.normalized * currentDistance);
 
-                currentReflections = 0;
-                Points.Clear();
-                Points.Add(startPosition);
-
-
-                if (hitData)
-                {
-                    currentDistance -= Vector2.Distance(startPosition, hitData.point);
-                    ReflectFurther(startPosition, hitData);
-                }
-                else
-                {
-                    Points.Add(startPosition + direction.normalized * currentDistance);
-
-                }
-
-                lr.positionCount = Points.Count;
-                lr.SetPositions(Points.ToArray());
-            }
+        }
+        lr.positionCount = Points.Count;
+        lr.SetPositions(Points.ToArray());
         
     }
 
     private void ReflectFurther(Vector2 origin, RaycastHit2D hitData)
     {
         if (currentReflections > maxReflections) return;
+
         Points.Add(hitData.point);
         currentReflections++;
 
@@ -105,7 +101,7 @@ public class ReflectRays : MonoBehaviour
         if (hitData.collider.gameObject.tag == "BFairy")
         {
             Debug.Log("검은색 요정");
-
+            hitData.transform.SendMessage("ChangeChildActive");
         }
     }
 }
