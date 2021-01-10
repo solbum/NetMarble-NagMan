@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject walkSound;
     public GameObject bookCanvas;
     public SceneTrans sceneTrans;
+    public GameObject startLine;
 
     private AudioSource source;
 
@@ -164,19 +165,20 @@ public class PlayerMovement : MonoBehaviour
 
         bool nowStat;
 
-        if (laterPage <= currentPage)
+        if (laterPage <= currentPage) // 다음장으로 넘어감
         {
             nowStat = true;
         }
-        else
+        else // 이전장으로 넘어감
         {
             nowStat = false;
         }
         switch (currentPage)
         {
             case 1:
-                middlePos.x = 5;
-                camera.transform.position = new Vector3(middlePos.x, 13, -10);
+                middlePos.x = -190;
+                camera.transform.position = new Vector3(middlePos.x, 70, -10);
+                camera.transform.gameObject.GetComponent<Camera>().orthographicSize = 37;
 
                 if (!nowStat)
                 {
@@ -186,33 +188,111 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case 2:
-                middlePos.x = 102;
-                camera.transform.position = new Vector3(middlePos.x, 13, -10);
+                middlePos.x = -3;
+                camera.transform.position = new Vector3(middlePos.x, 14, -10);
+                camera.transform.gameObject.GetComponent<Camera>().orthographicSize = 94;
 
                 if (nowStat)
                 {
-                    endPos = new Vector2(middlePos.x - 40.0f, this.transform.position.y);
+                    Invoke("ActiveLine", 1.5f);
+                    endPos = new Vector2(-123, 95);
                     StartCoroutine(MoveTo(endPos));
                 }
                 else
                 {
-                    endPos = new Vector2(middlePos.x + 40.0f, this.transform.position.y);
+                    endPos = new Vector2(125, this.transform.position.y);
                     StartCoroutine(MoveTo(endPos));
                 }
                 break;
 
             case 3:
-                middlePos.x = 199;
-                camera.transform.position = new Vector3(middlePos.x, 13, -10);
+                middlePos.x = 210;
+                camera.transform.position = new Vector3(middlePos.x, 76, -10);
+                camera.transform.gameObject.GetComponent<Camera>().orthographicSize = 45;
 
                 if (nowStat)
                 {
-                    endPos = new Vector2(middlePos.x - 40.0f, this.transform.position.y);
+                    endPos = new Vector2(155, this.transform.position.y);
                     StartCoroutine(MoveTo(endPos));
                 }
                 else
                 {
-                    endPos = new Vector2(middlePos.x + 40.0f, this.transform.position.y);
+                    endPos = new Vector2(260, 71);
+                    StartCoroutine(MoveTo(endPos));
+                }
+                break;
+
+            case 4:
+                middlePos.x = 347;
+                camera.transform.position = new Vector3(middlePos.x, 77, -10);
+                camera.transform.gameObject.GetComponent<Camera>().orthographicSize = 45;
+                if (nowStat)
+                {
+                    endPos = new Vector2(303, 47);
+                    StartCoroutine(MoveTo(endPos));
+                }
+                else
+                {
+                    endPos = new Vector2(393, 47);
+                    StartCoroutine(MoveTo(endPos));
+                }
+                break;
+
+            case 5:
+                middlePos.x = 470;
+                camera.transform.position = new Vector3(middlePos.x, 77, -10);
+                camera.transform.gameObject.GetComponent<Camera>().orthographicSize = 45;
+                if(nowStat)
+                {
+                    endPos = new Vector2(420, 47);
+                    StartCoroutine(MoveTo(endPos));
+                }
+                else
+                {
+                    endPos = new Vector2(519, 47);
+                    StartCoroutine(MoveTo(endPos));
+                }
+                break;
+
+            case 6:
+                middlePos.x = 594;
+                camera.transform.position = new Vector3(middlePos.x, 77, -10);
+                camera.transform.gameObject.GetComponent<Camera>().orthographicSize = 45;
+                if (nowStat)
+                {
+                    endPos = new Vector2(544, 47);
+                    StartCoroutine(MoveTo(endPos));
+                }
+                else
+                {
+                    endPos = new Vector2(643, 47);
+                    StartCoroutine(MoveTo(endPos));
+                }
+                break;
+
+            case 7:
+                middlePos.x = 716;
+                camera.transform.position = new Vector3(middlePos.x, 77, -10);
+                camera.transform.gameObject.GetComponent<Camera>().orthographicSize = 45;
+                if (nowStat)
+                {
+                    endPos = new Vector2(667, 47);
+                    StartCoroutine(MoveTo(endPos));
+                }
+                else
+                {
+                    endPos = new Vector2(765, 47);
+                    StartCoroutine(MoveTo(endPos));
+                }
+                break;
+
+            case 8:
+                middlePos.x = 838;
+                camera.transform.position = new Vector3(middlePos.x, 77, -10);
+                camera.transform.gameObject.GetComponent<Camera>().orthographicSize = 45;
+                if (nowStat)
+                {
+                    endPos = new Vector2(788, 47);
                     StartCoroutine(MoveTo(endPos));
                 }
                 break;
@@ -241,10 +321,13 @@ public class PlayerMovement : MonoBehaviour
         bookCanvas.SetActive(false);
         isMoveCam = false;
     }
-
-    
     public void isPlay()
     {
         source.Play();
+    }
+
+    void ActiveLine()
+    {
+        startLine.SetActive(true);
     }
 }

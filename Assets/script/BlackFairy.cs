@@ -8,8 +8,9 @@ public class BlackFairy : MonoBehaviour
 
     public Vector2 nowDir;
     public Vector2 isPos;
+    public int IntroDir;
 
-    ReflectRays[] laser;
+    private ReflectRays[] laser;
 
     private void Awake()
     {
@@ -19,27 +20,28 @@ public class BlackFairy : MonoBehaviour
     public void FixedUpdate()
     {
         isPos = this.transform.position;
+
         switch (dir)
         {
             case 1:
                 nowDir = transform.right;
-                isPos.x = this.transform.position.x + 2;
+                isPos.x = this.transform.position.x + IntroDir;
                 break;
             case 2:
                 nowDir = -transform.up;
-                isPos.y = this.transform.position.y - 2;
+                isPos.y = this.transform.position.y - IntroDir;
                 break;
             case 3:
                 nowDir = -transform.right;
-                isPos.x = this.transform.position.x - 2;
+                isPos.x = this.transform.position.x - IntroDir;
                 break;
             case 4:
                 nowDir = transform.up;
-                isPos.y = this.transform.position.y + 2;
+                isPos.y = this.transform.position.y + IntroDir;
                 break;
         }
 
-        laser[0].ShotRay(isPos, nowDir, 100);
+        gameObject.transform.GetChild(0).GetComponent<ReflectRays>().ShotRay(isPos, nowDir, 10000);
     }
 
 
@@ -57,6 +59,6 @@ public class BlackFairy : MonoBehaviour
 
     public void ChangeChildActive()
     {
-        laser[0].gameObject.SetActive(true);
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 }
