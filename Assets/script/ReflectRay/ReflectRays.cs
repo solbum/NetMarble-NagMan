@@ -22,7 +22,8 @@ public class ReflectRays : MonoBehaviour
     {
         Points = new List<Vector3>();
         lr = transform.GetComponent<LineRenderer>();
-        this.gameObject.SetActive(false);
+        if(this.gameObject.tag != "StartFairy")
+            this.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -102,6 +103,11 @@ public class ReflectRays : MonoBehaviour
         {
             //Debug.Log("검은색 요정");
             hitData.transform.SendMessage("ChangeChildActive");
+        }
+
+        if(hitData.collider.gameObject.tag == "LightGoal")
+        {
+            hitData.transform.SendMessage("ActiveArea");
         }
     }
 }

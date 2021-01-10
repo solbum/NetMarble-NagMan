@@ -13,6 +13,14 @@ TagManager:
   - Managers
   - Reflect
   - MultReflect
+  - StartLine
+  - BFairy
+  - CPage
+  - Prism
+  - NextLevel
+  - LightGoal
+  - StartFairy
+  - BeforeEndLine
   layers:
   - Default
   - TransparentFX
